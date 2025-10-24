@@ -12,7 +12,7 @@ import Foundation
 
 /// `LCTabView` 是一个自定义的 `NSTabView`，它使用一个自绘的 `NSSegmentedControl` 来替代系统默认的选项卡按钮，
 /// 提供更灵活和美观的样式。
-class LCTabView: NSTabView {
+final public class LCTabView: NSTabView {
     
     /// 自定义的分段控件，用于替代默认的 tab 按钮
     private var customSegmentedControl: NSSegmentedControl?
@@ -43,7 +43,7 @@ class LCTabView: NSTabView {
     }
     
     /// 在视图布局更新时调整 segmentedControl 的位置
-    override func layout() {
+    public override func layout() {
         super.layout()
         guard let segmentedControl = customSegmentedControl else { return }
         
@@ -74,7 +74,7 @@ class LCTabView: NSTabView {
     }
     
     /// 添加一个新的 tabItem，并刷新 segmentedControl
-    override func addTabViewItem(_ tabViewItem: NSTabViewItem) {
+    public override func addTabViewItem(_ tabViewItem: NSTabViewItem) {
         super.addTabViewItem(tabViewItem)
         if !hasDefaultSegment() {
             refreshSegmentedControl()
@@ -82,7 +82,7 @@ class LCTabView: NSTabView {
     }
     
     /// 切换选中的 tab，同时更新 segmentedControl 的选中状态
-    override func selectTabViewItem(at index: Int) {
+    public override func selectTabViewItem(at index: Int) {
         super.selectTabViewItem(at: index)
         if !hasDefaultSegment() {
             customSegmentedControl?.selectedSegment = index

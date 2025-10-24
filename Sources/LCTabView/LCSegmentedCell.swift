@@ -9,7 +9,7 @@ import Cocoa
 import Foundation
 
 /// 自定义的 NSSegmentedCell，用于绘制带有圆角选中背景和文字样式的 Segment。
-class LCSegmentedCell: NSSegmentedCell {
+final public class LCSegmentedCell: NSSegmentedCell {
     
     /// 重绘指定段（segment）的显示内容，包括背景和文本。
     ///
@@ -17,7 +17,7 @@ class LCSegmentedCell: NSSegmentedCell {
     ///   - segment: 当前绘制的段索引。
     ///   - frame: 当前段的绘制区域。
     ///   - controlView: 拥有该 cell 的控件视图（通常是 NSSegmentedControl）。
-    override func drawSegment(_ segment: Int, inFrame frame: NSRect, with controlView: NSView) {
+    public override func drawSegment(_ segment: Int, inFrame frame: NSRect, with controlView: NSView) {
         // 判断该 segment 是否为选中状态
         let isSelected = self.isSelected(forSegment: segment)
         
