@@ -31,6 +31,7 @@ final public class LCTabView: NSTabView {
     
     /// 初始化自定义 segmentedControl 并添加到视图中
     private func initialize() {
+        delegate = self
         let segmentedControl = NSSegmentedControl()
         segmentedControl.cell = LCSegmentedCell() // 使用自定义绘制 cell
         segmentedControl.segmentCount = self.numberOfTabViewItems
@@ -109,6 +110,26 @@ final public class LCTabView: NSTabView {
     @objc private func segmentedControlChanged() {
         if let selectedIndex = customSegmentedControl?.selectedSegment {
             selectTabViewItem(at: selectedIndex)
+        }
+    }
+}
+
+
+// MARK: - NSTabViewDelegate
+extension LCTabView: NSTabViewDelegate {
+    // Tab 将要切换时调用
+    public func tabView(_ tabView: NSTabView, willSelect tabViewItem: NSTabViewItem?) {
+        // print("将要切换到: \(tabViewItem?.label ?? "unknown")")
+    }
+    
+    // Tab 已经切换后调用
+    public func tabView(_ tabView: NSTabView, didSelect tabViewItem: NSTabViewItem?) {
+        // print("已经切换到: \(tabViewItem?.label ?? "unknown")")
+        // 确保 segmented control 的选中状态同步
+        if let item = tabViewItem {
+            let index = indexOfTabViewItem(item)
+            customSegmentedControl?.selectedSegment = index
+            customSegmentedControl?.needsDisplay = true
         }
     }
 }
