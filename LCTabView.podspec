@@ -2,7 +2,7 @@ Pod::Spec.new do |spec|
 
   spec.name           = "LCTabView"
 
-  spec.version        = "1.0.0"
+  spec.version        = "1.0.1"
   
   spec.summary        = "LCTabView is a Cocoa framework that supports customizing the background color of the selected item in TabView."
 
